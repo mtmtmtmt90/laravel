@@ -11,15 +11,5 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function php($name = ""){
-        return redirect()->route('ex',['name'=>$name]);
-    }
-
-    public function example($name = ""){
-        return view('example', ['name'=>$name]);
-    }
-
-    public function fallback(){
-        return view('fallback');
-    }
+    
 }

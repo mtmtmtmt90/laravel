@@ -16,21 +16,8 @@ use App\Http\Middleware\EnsureTokenIsValid;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-Route::get('/php/{name?}', [Controller::class, 'php']);
-Route::get('/example/{name?}', [Controller::class, 'example'])->name('ex');
-//Route::view('/example','example');
-Route::prefix('doors')->group(function () {
-    Route::get('/door1', function () { return view('doors/door1');});
-    Route::get('/door2', function(){ return view('doors/door2');});
-    Route::get('/door3', function(){ return view('doors/door3');});
+Route::get('/category', function(){
+    return view('category');
 });
-Route::get('/login', function(){ return view('login'); })->name('login');
-Route::post('/auth', [EnsureTokenIsValid::class, 'handle']);
-Route::fallback([Controller::class, 'fallback']);
-/*
-Route::get('map', function(){ return view('map'); })->missing(function(){
-    return redirect()->route('ex');
-});
-*/
