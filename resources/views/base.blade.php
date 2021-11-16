@@ -26,6 +26,10 @@
                 display: flex;
                 justify-content: space-between;
             }
+            .navbar-2{
+                display:flex;
+                justify-content: right;
+            }
             .nav-item{
                 text-decoration: none;
                 color: rgb(240, 240, 240);
@@ -44,7 +48,10 @@
                     <a href="/basket" class="nav-item">To basket</a>
                     <a href="/reset" class="nav-item">Reset selected</a>
                 </div>
-                <a href="/admin" class="nav-item">Administration Panel</a>
+                <div class="navbar-2">
+                    <a href="/login" class="nav-item">Login</a>
+                    <a href="/admin" class="nav-item">Administration Panel</a>
+                </div>
             </div>
         </div>
     </body>

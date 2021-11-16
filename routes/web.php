@@ -18,6 +18,18 @@ use App\Http\Middleware\EnsureTokenIsValid;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/category', function(){
+Route::get('/categories', function(){
     return view('category');
+});
+Route::get('/basket', function(){
+    return view('basket');
+});
+Route::post('/product/1', function(){
+    return view('product');
+});
+Route::get('/ordering', function(){
+    return view('order');
+});
+Route::get('/products', function(){
+    return view('index');
 });
