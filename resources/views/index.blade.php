@@ -111,11 +111,11 @@
             <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x-purple.jpeg');}}')"></div>
             <div class="item-name">IPhone X Purple 256GB</div>
             <div class="item-price">860$</div>
-        </div>
             <div class="item-options">
                 <button class="to-basket">To basket</button>
                 <button class="about">About</button>
-        </div>
+            </div>    
+        </div>    
         <div class="item">
             <div class="item-img" style="background-image: url('{{Storage::url('img/samsung-s20.jpg');}}')"></div>
             <div class="item-name">Samsung S20</div>

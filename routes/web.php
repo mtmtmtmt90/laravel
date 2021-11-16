@@ -33,3 +33,15 @@ Route::get('/ordering', function(){
 Route::get('/products', function(){
     return view('index');
 });
+Route::get('/dashboard/login', function(){
+    return view('dashboard/login');
+});
+Route::get('/dashboard/categories', function(){
+    return view('dashboard/categories');
+});
+Route::get('/dashboard/products', function(){
+    return view('dashboard/products');
+});
+Route::get('/dashboard/orders', function(){
+    return view('dashboard/orders');
+});

@@ -12,9 +12,9 @@
                 padding:0;
             }
             .nav{
-                background: rgb(15, 15, 15);
+                background: rgb(230, 230, 230);
                 width: 100%;
-                
+                box-shadow: 0px 3px 5px lightgrey;
             }
             .navbar{
                 margin: 0 auto;
@@ -32,7 +32,7 @@
             }
             .nav-item{
                 text-decoration: none;
-                color: rgb(240, 240, 240);
+                color: rgb(100, 100, 100);
                 padding: 10px 10px;
                 
             }
@@ -42,15 +42,10 @@
         <div class="nav">
             <div class="navbar">
                 <div class="navbar-1">
-                    <a href="/" class="nav-item" style="font-size: 20px;">MarketPlace</a>
-                    <a href="/products" class="nav-item">All products</a>
-                    <a href="/categories" class="nav-item">Categories</a>
-                    <a href="/basket" class="nav-item">To basket</a>
-                    <a href="/reset" class="nav-item">Reset selected</a>
-                </div>
-                <div class="navbar-2">
-                    <a href="/login" class="nav-item">Login</a>
-                    <a href="/dashboard/login" class="nav-item">Administration Panel</a>
+                    <a href="/" class="nav-item" style="font-size: 20px;">Back to Site </a>
+                    <a href="/dashboard/categories" class="nav-item">Category</a>
+                    <a href="/dashboard/products" class="nav-item">Products</a>
+                    <a href="/dashboard/orders" class="nav-item">Orders</a>
                 </div>
             </div>
         </div>
