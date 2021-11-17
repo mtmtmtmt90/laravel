@@ -48,3 +48,9 @@ Route::get('/dashboard/orders', function(){
 Route::get('dashboard/order/1', function(){
     return view('dashboard/order');
 });
+Route::get('dashboard/open', function(){
+    return view('dashboard/open');
+});
+Route::get('dashboard/edit', function(){
+    return view('dashboard/edit');
+});

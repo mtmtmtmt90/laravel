@@ -8,6 +8,7 @@
     .container-name{
         font-size:30px;
         margin-bottom:10px;
+        font-weight:bold;
     }
     .grid-table-head{
         margin-top:20px;
@@ -75,7 +76,7 @@
         <div>Mobile telephones</div>
         <div>
             <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
+            <button class="edit-btn" formaction="/dashboard/edit">Edit</button>
             <button class="del-btn">Delete</button>
         </div>
     </div>
