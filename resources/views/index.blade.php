@@ -68,7 +68,7 @@
             <div class="item-price">130$</div>
             <div class="item-options">
                 <button class="to-basket">To basket</button>
-                <button class="about" formaction="/product/1">About</button>
+                <button class="about" formaction="/product/iphone_x_256">About</button>
             </div>
         </div>
         <div class="item">

@@ -31,21 +31,21 @@
 </style>
 <div class="container-category">
     <div class="category">
-        <a href="#">
+        <a href="/mobile">
             <div class="item">
                 <div class="item-img" style="background-image: url('{{ Storage::url('img/phones.png') }}')"></div>
                 <div class="item-name">Mobile telephones</div>
                 <div class="item-desc">There you can find mobile telephones in best price</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/portable">
             <div class="item">
                 <div class="item-img" style="background-image: url('{{ Storage::url('img/_20200529162648_wireless-headphones.jpg') }}')"></div>
                 <div class="item-name">Portable equipment</div>
                 <div class="item-desc">Portable equipment store</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/appliances">
             <div class="item">
                 <div class="item-img" style="background-image: url('{{ Storage::url('img/appliances.jpg') }}')"></div>
                 <div class="item-name">Appliances</div>

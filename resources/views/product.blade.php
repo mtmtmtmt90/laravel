@@ -38,7 +38,7 @@
 </style>
 
 <div class="container-product">
-    <div class="container-name">iPhone X 256GB</div>
+    <div class="container-name">{{ $product }}</div>
     <div class="container-desc">Price: 850$</div>
     <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
     <div class="container-desc">Excellent advanced phone with 256gb memory</div>

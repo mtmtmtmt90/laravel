@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Middleware\EnsureTokenIsValid;
 /*
@@ -9,30 +10,19 @@ use App\Http\Middleware\EnsureTokenIsValid;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
+| Here is where you can register web routes for your application. These
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/categories', function(){
-    return view('category');
-});
-Route::get('/basket', function(){
-    return view('basket');
-});
-Route::post('/product/1', function(){
-    return view('product');
-});
-Route::get('/ordering', function(){
-    return view('order');
-});
-Route::get('/products', function(){
-    return view('index');
-});
+Route::get('/', [MainController::class, 'index']);
+Route::get('/categories', [MainController::class, 'categories']);
+Route::get('/{category}', [MainController::class, 'category']);
+Route::get('/basket', [MainController::class, 'basket']);
+Route::post('/product/{product_code?}', [MainController::class, 'product']);
+Route::get('/ordering', [MainController::class, 'ordering']);
+Route::get('/products', [MainController::class, 'index']);
 Route::get('/dashboard/login', function(){
     return view('dashboard/login');
 });
