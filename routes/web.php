@@ -45,3 +45,6 @@ Route::get('/dashboard/products', function(){
 Route::get('/dashboard/orders', function(){
     return view('dashboard/orders');
 });
+Route::get('dashboard/order/1', function(){
+    return view('dashboard/order');
+});
