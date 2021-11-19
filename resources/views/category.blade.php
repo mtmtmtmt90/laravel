@@ -31,26 +31,15 @@
 </style>
 <div class="container-category">
     <div class="category">
-        <a href="/mobile">
+        @foreach($categories as $category)
+        <a href="/{{ $category->code }}">
             <div class="item">
                 <div class="item-img" style="background-image: url('{{ Storage::url('img/phones.png') }}')"></div>
-                <div class="item-name">Mobile telephones</div>
-                <div class="item-desc">There you can find mobile telephones in best price</div>
+                <div class="item-name">{{ $category->name }}</div>
+                <div class="item-desc">{{ $category->description }}</div>
             </div>
         </a>
-        <a href="/portable">
-            <div class="item">
-                <div class="item-img" style="background-image: url('{{ Storage::url('img/_20200529162648_wireless-headphones.jpg') }}')"></div>
-                <div class="item-name">Portable equipment</div>
-                <div class="item-desc">Portable equipment store</div>
-            </div>
-        </a>
-        <a href="/appliances">
-            <div class="item">
-                <div class="item-img" style="background-image: url('{{ Storage::url('img/appliances.jpg') }}')"></div>
-                <div class="item-name">Appliances</div>
-                <div class="item-desc">Appliances store</div>
-            </div>
-        </a>
+        @endforeach
+        
     </div>
 </div>

@@ -60,7 +60,7 @@
 </style>
 <form action="#" method="POST"> @csrf
 <div class="container-all">
-    <div class="container-name">All products</div>
+    <div class="container-name">{{ isset($category) ? $category->name : "All products" }}</div>
     <div class="products">
         <div class="item">
             <div class="item-img" style="background-image: url('{{Storage::url('img/beats.jpeg');}}')"></div>

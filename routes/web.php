@@ -18,11 +18,11 @@ use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/categories', [MainController::class, 'categories']);
-Route::get('/{category}', [MainController::class, 'category']);
 Route::get('/basket', [MainController::class, 'basket']);
 Route::post('/product/{product_code?}', [MainController::class, 'product']);
 Route::get('/ordering', [MainController::class, 'ordering']);
 Route::get('/products', [MainController::class, 'index']);
+Route::get('/{code?}', [MainController::class, 'category']);
 Route::get('/dashboard/login', function(){
     return view('dashboard/login');
 });
