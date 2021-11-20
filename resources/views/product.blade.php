@@ -1,16 +1,17 @@
-@include('base')
+@extends('base')
 
+@section('content')
 <style>
-    .container-product{
-        width:800px;
-        margin:50px auto 10px;
+    form{
         text-align:center;
     }
     .container-name{
+        text-align:center;
         font-size:30px;
-        margin:10px;
+        margin:50px auto 10px;
     }
     .container-desc{
+        text-align:center;
         color: rgb(15,15,15);
         margin:10px;
         font-size:14px;
@@ -36,11 +37,11 @@
         opacity:0.7;
     }
 </style>
-
-<div class="container-product">
+<form action="">
     <div class="container-name">{{ $product }}</div>
     <div class="container-desc">Price: 850$</div>
     <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
     <div class="container-desc">Excellent advanced phone with 256gb memory</div>
     <button class="item-btn">Add to basket</button>
-</div>
+</form>
+@endsection

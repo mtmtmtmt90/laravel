@@ -1,16 +1,14 @@
-@include('base')
+@extends('base')
 
+@section('content')
 <style>
-    .container-order{
-        width:800px;
-        margin:50px auto 10px;
-        text-align:center;
-    }
     .container-name{
+        text-align:center;
         font-size:30px;
         margin:10px;
     }
     .container-desc{
+        text-align:center;
         font-size:14px;
         color: rgb(15, 15, 15);
         margin:10px;
@@ -28,8 +26,11 @@
         width:200px;
         height:20px;
     }
+    form{
+        text-align:center;
+    }
     .form-btn{
-        margin:20px 0;
+        margin:20px auto;
         font-size:16px;
         padding:3px 50px;
         background-color:rgb(34,187,51);
@@ -40,7 +41,6 @@
     }
 </style>
 
-<div class="container-order">
     <div class="container-name">Confirm your order</div>
     <div class="container-desc">Total cost of order: 2255$</div>
     <div class="container-desc">Put your name and number, to connect with you:</div>
@@ -55,4 +55,4 @@
         </div>
         <button class="form-btn">Confirm</button>
     </form>
-</div>
+@endsection    

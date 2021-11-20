@@ -1,10 +1,7 @@
-@include('base')
+@extends('base', ['file' => 'category'])
 
+@section('content')
 <style>
-    .container-category{
-        width: 800px;
-        margin: auto;
-    }
     .category{
         text-align: center;
         margin:50px auto;
@@ -29,7 +26,6 @@
         color: inherit;
     }
 </style>
-<div class="container-category">
     <div class="category">
         @foreach($categories as $category)
         <a href="/{{ $category->code }}">
@@ -42,4 +38,4 @@
         @endforeach
         
     </div>
-</div>
+@endsection    

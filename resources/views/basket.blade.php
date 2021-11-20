@@ -1,10 +1,7 @@
-@include('base')
+@extends('base', ['file' => 'basket'])
 
+@section('content')
 <style>
-    .container-basket{
-        width:800px;
-        margin:auto;
-    }
     .container-name{
         font-size:30px;
         margin-top:50px;
@@ -86,7 +83,6 @@
     }
 </style>
 <form action="#" method="GET"> @csrf
-<div class="container-basket">
     <div class="container-name">Basket</div>
     <div class="container-desc">Ordering</div>
     <div class="grid-table-head">
@@ -117,5 +113,5 @@
     <button class="order-button" formaction="/ordering">
         Order
     </button>
-</div>
 </form>
+@endsection

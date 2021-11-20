@@ -1,10 +1,7 @@
-@include('base')
+@extends('base', ['file' => 'index'])
 
+@section('content')
 <style>
-    .container-all{
-        width: 800px;
-        margin: auto;
-    }
     .container-name{
         margin: 50px 0 10px;
         font-size: 40px;
@@ -59,7 +56,6 @@
     }
 </style>
 <form action="#" method="POST"> @csrf
-<div class="container-all">
     <div class="container-name">{{ isset($category) ? $category->name : "All products" }}</div>
     <div class="products">
         <div class="item">
@@ -126,5 +122,5 @@
             </div>
         </div>
     </div>
-</div>
 </form>
+@endsection
