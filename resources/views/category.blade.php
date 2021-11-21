@@ -2,40 +2,66 @@
 
 @section('content')
 <style>
-    .category{
+    .container-name{
+        margin: 50px 0 10px;
+        font-size: 40px;
         text-align: center;
-        margin:50px auto;
+    }
+    .products{
+        display: flex;
+        flex-wrap: wrap;
     }
     .item{
-        margin-top: 30px;
+        width: 230px;
+        margin: 10px 15px;
+        border: 1px solid lightgrey;
+        border-radius: 7px;
+        text-align: center;
     }
     .item-img{
         margin: 5px auto;
-        height: 75px;
+        width: 200px;
+        height: 200px;
         background-position: center;
         background-clip: content-box;
         background-repeat: no-repeat;
         background-size: contain;
     }
     .item-name{
-        margin: 5px auto;
         font-size: 25px;
+        margin: 5px auto;
     }
-    a{
-        text-decoration: none;
-        color: inherit;
+    .item-price{
+        margin: 5px auto;
+    }
+    button{
+        width: 75px;
+        height: 30px;
+        margin: 5px auto;
+        border:1px solid lightgrey;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:active{
+        opacity: 0.5;
+    }
+    .to-basket{
+        background-color: rgba(19, 19, 255, 0.842);
+        color: white;
+        border: 0;
+    }
+    .about{
+        background-color: white;
+        color: rgb(15,15,15);
     }
 </style>
-    <div class="category">
-        @foreach($categories as $category)
-        <a href="/{{ $category->code }}">
-            <div class="item">
-                <div class="item-img" style="background-image: url('{{ Storage::url('img/phones.png') }}')"></div>
-                <div class="item-name">{{ $category->name }}</div>
-                <div class="item-desc">{{ $category->description }}</div>
-            </div>
-        </a>
+<form action="#" method="POST"> @csrf
+    <div class="container-name">{{ isset($category) ? $category->name : "All products" }}</div>
+    <div class="products">
+        @foreach($category->products as $product)
+            @include('card', ['product' => $product])
         @endforeach
         
     </div>
-@endsection    
+</form>
+@endsection

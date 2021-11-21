@@ -38,10 +38,10 @@
     }
 </style>
 <form action="">
-    <div class="container-name">{{ $product }}</div>
-    <div class="container-desc">Price: 850$</div>
+    <div class="container-name">{{ $product->name }}</div>
+    <div class="container-desc">Price: {{ $product->price }}$</div>
     <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
-    <div class="container-desc">Excellent advanced phone with 256gb memory</div>
+    <div class="container-desc">{{ $product->description }}</div>
     <button class="item-btn">Add to basket</button>
 </form>
 @endsection

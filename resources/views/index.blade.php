@@ -56,71 +56,12 @@
     }
 </style>
 <form action="#" method="POST"> @csrf
-    <div class="container-name">{{ isset($category) ? $category->name : "All products" }}</div>
+    <div class="container-name">All products</div>
     <div class="products">
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/beats.jpeg');}}')"></div>
-            <div class="item-name">Beats Pro</div>
-            <div class="item-price">130$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about" formaction="/product/iphone_x_256">About</button>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/braun.jpg');}}')"></div>
-            <div class="item-name">Braun</div>
-            <div class="item-price">150$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/go-pro.jpg');}}')"></div>
-            <div class="item-name">Go Pro</div>
-            <div class="item-price">55$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/huawei-p40-pro-plus.jpg');}}')"></div>
-            <div class="item-name">Huawei P40 Pro Plus</div>
-            <div class="item-price">450$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
-            <div class="item-name">IPhone X 256GB</div>
-            <div class="item-price">850$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x-purple.jpeg');}}')"></div>
-            <div class="item-name">IPhone X Purple 256GB</div>
-            <div class="item-price">860$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>    
-        </div>    
-        <div class="item">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/samsung-s20.jpg');}}')"></div>
-            <div class="item-name">Samsung S20</div>
-            <div class="item-price">650$</div>
-            <div class="item-options">
-                <button class="to-basket">To basket</button>
-                <button class="about">About</button>
-            </div>
-        </div>
+        @foreach($products as $product)
+            @include('card', ['product' => $product])
+        @endforeach
+        
     </div>
 </form>
 @endsection

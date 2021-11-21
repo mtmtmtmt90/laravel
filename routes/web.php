@@ -19,7 +19,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
 Route::get('/basket', [MainController::class, 'basket'])->name('basket');
-Route::post('/product/{product_code?}', [MainController::class, 'product']);
+Route::post('/product/{product_code?}', [MainController::class, 'product'])->name('product');
 Route::get('/ordering', [MainController::class, 'ordering']);
 Route::get('/products', [MainController::class, 'index']);
 Route::get('/{code?}', [MainController::class, 'category']);
