@@ -19,13 +19,6 @@ class MainController extends Controller
     }
 
     
-    public function basket(){
-        return view('basket');
-    }
-
-    public function ordering(){
-        return view('order');
-    }
 
     public function product($product_code = null){
         $product = Product::where('code', $product_code)->first();

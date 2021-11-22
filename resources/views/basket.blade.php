@@ -49,8 +49,8 @@
         padding:3px 8px;
         border-top-left-radius:5px;
         border-bottom-left-radius:5px;
-        height:20px;
         margin-top:auto;margin-bottom:auto;
+        border-color:rgb(187,33,36);
     }
     .count-inc{
         cursor: pointer;
@@ -59,7 +59,7 @@
         padding:3px 7px;
         border-top-right-radius:5px;
         border-bottom-right-radius:5px;
-        height:20px;
+        border-color:rgb(34,187,51);
         margin-top:auto;margin-bottom:auto;
     }
     .count-dec:active, .count-inc:active{
@@ -81,6 +81,14 @@
         cursor: pointer;
         color:white;
     }
+    .toItem{
+        text-decoration:none;
+        color:inherit;
+    }
+    .toItem:hover{
+        text-decoration:underline;
+        color:blue;
+    }
 </style>
 <form action="#" method="GET"> @csrf
     <div class="container-name">Basket</div>
@@ -91,24 +99,26 @@
         <div>Price</div>
         <div>Cost</div>
     </div>
+    @foreach($order->products as $product)
     <div class="grid-table-body">
         <div style="display:flex;">
             <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
-            <div style="margin-top:auto;margin-bottom:auto;">IPhone X 256GB</div>
+            <div style="margin-top:auto;margin-bottom:auto;"><a href="{{ route('product', $product->code) }}" class="toItem">{{ $product->name }}</a></div>
         </div>
         <div style="display:flex;">
             <div style="display:flex;flex-direction:column;justify-content:center;">
-                <div class="count">1</div>
+                <div class="count">{{ $product->pivot->count }}</div>
             </div>
-            <div class="count-dec">-</div>
-            <div class="count-inc">+</div>
+            <button class="count-dec" formaction="{{ route('basketRmv', $product->id) }}" formmethod="post">-</button>
+            <button class="count-inc" formaction="{{ route('basketAdd', $product->id) }}" formmethod="post">+</button>
         </div>
-        <div style="margin-top:auto;margin-bottom:auto;">850$</div>
-        <div style="margin-top:auto;margin-bottom:auto;">850$</div>
+        <div style="margin-top:auto;margin-bottom:auto;">{{ $product->price }}$</div>
+        <div style="margin-top:auto;margin-bottom:auto;">{{ $product->getCost() }}$</div>
     </div>
+    @endforeach
     <div class="grid-table-foot">
         <div>Total cost</div>
-        <div>850$</div>
+        <div>{{ $order->totalCost() }}$</div>
     </div>
     <button class="order-button" formaction="/ordering">
         Order

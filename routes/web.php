@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Middleware\EnsureTokenIsValid;
 /*
@@ -18,10 +19,12 @@ use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
-Route::get('/basket', [MainController::class, 'basket'])->name('basket');
-Route::post('/product/{product_code?}', [MainController::class, 'product'])->name('product');
-Route::get('/ordering', [MainController::class, 'ordering']);
-Route::get('/products', [MainController::class, 'index']);
+Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
+Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('basketAdd');
+Route::post('/basket/rmv/{id}', [BasketController::class, 'basketRmv'])->name('basketRmv');
+Route::get('/product/{product_code?}', [MainController::class, 'product'])->name('product');
+Route::get('/ordering', [BasketController::class, 'ordering'])->name('ordering');
+Route::get('/products', [MainController::class, 'index'])->name('products');
 Route::get('/{code?}', [MainController::class, 'category']);
 Route::get('/dashboard/login', function(){
     return view('dashboard/login');
