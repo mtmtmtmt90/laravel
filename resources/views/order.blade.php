@@ -42,16 +42,17 @@
 </style>
 
     <div class="container-name">Confirm your order</div>
-    <div class="container-desc">Total cost of order: 2255$</div>
+    <div class="container-desc">Total cost of order: {{ $order->totalCost() }}$</div>
     <div class="container-desc">Put your name and number, to connect with you:</div>
-    <form action="#">
+    <form action="{{ route('orderConfirm') }}" method="POST">
+        @csrf
         <div class="input-place">
             <label for="name" class="form-label">Name:</label>
-            <input type="text" id="name" placeholder="your name..." class="form-input">
+            <input type="text" name="name" id="name" placeholder="your name..." class="form-input">
         </div>
         <div class="input-place">
             <label for="number" class="form-label">Your number:</label>
-            <input type="text" id="number" placeholder="your number..." class="form-input">
+            <input type="text" name="number" id="number" placeholder="your number..." class="form-input">
         </div>
         <button class="form-btn">Confirm</button>
     </form>

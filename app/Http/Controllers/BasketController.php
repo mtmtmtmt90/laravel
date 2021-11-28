@@ -14,12 +14,14 @@ class BasketController extends Controller
 
     public function basket(){
         $orderId = session::get('orderId');
-        if (!is_null($orderId)) { $order = Order::findOrFail($orderId); }
+        if (!is_null($orderId)) { $order = Order::findOrFail($orderId); } else { $order = null; }
         return view('basket', ['order' => $order]);
     }
 
     public function ordering(){
-        return view('order');
+        $orderId = session::get('orderId');
+        if (!is_null($orderId)) { $order = Order::findOrFail($orderId); } else { $order = null; }
+        return view('order', ['order' => $order]);
     }
 
     public function basketAdd($productID){
@@ -59,8 +61,13 @@ class BasketController extends Controller
                 $pivotRow->update();
             }
         } 
-        
-
         return redirect()->route('basket');
+    }
+
+    public function confirm(Request $request){
+        $orderId = session::get('orderId');
+        if (is_null($orderId)) { return redirect()->route('index'); } else { $order = Order::find($orderId); }
+        $result = $order->saveResult($request->name, $request->number);
+        return redirect()->route('index');
     }
 }

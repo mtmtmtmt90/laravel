@@ -90,6 +90,7 @@
         color:blue;
     }
 </style>
+@isset($order)
 <form action="#" method="GET"> @csrf
     <div class="container-name">Basket</div>
     <div class="container-desc">Ordering</div>
@@ -124,4 +125,9 @@
         Order
     </button>
 </form>
+@endisset
+@if(!$order)
+    <div class="container-name">Emtpy basket</div>
+    <div class="container-desc">Choose something...</div>
+@endif
 @endsection

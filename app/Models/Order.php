@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Session;
 
 class Order extends Model
 {
@@ -18,5 +19,17 @@ class Order extends Model
             $sum += $product->getCost();
         }
         return $sum;
+    }
+
+    public function saveResult($name, $number){
+        if ($this->status) {
+            return false;
+        } else {
+            $this->name = $name;
+            $this->phone = $number;
+            $this->status = 1;
+            $this->save(); 
+            session::forget('orderId');
+        }
     }
 }

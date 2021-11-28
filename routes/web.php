@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Middleware\EnsureTokenIsValid;
+use Session;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,10 @@ use App\Http\Middleware\EnsureTokenIsValid;
 |
 */
 
+Route::get('/dd', function(){
+    session::forget('orderId');
+});
+
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
 Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
@@ -24,6 +29,7 @@ Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('b
 Route::post('/basket/rmv/{id}', [BasketController::class, 'basketRmv'])->name('basketRmv');
 Route::get('/product/{product_code?}', [MainController::class, 'product'])->name('product');
 Route::get('/ordering', [BasketController::class, 'ordering'])->name('ordering');
+Route::post('/order/confirm', [BasketController::class, 'confirm'])->name('orderConfirm');
 Route::get('/products', [MainController::class, 'index'])->name('products');
 Route::get('/{code?}', [MainController::class, 'category']);
 Route::get('/dashboard/login', function(){

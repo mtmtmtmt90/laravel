@@ -64,4 +64,6 @@
         
     </div>
 </form>
+
+@include('extensions.message', ['type' => 'success', 'message' => 'Good'])
 @endsection
