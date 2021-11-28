@@ -55,7 +55,7 @@
         color: rgb(15,15,15);
     }
 </style>
-<form action="#" method="POST"> @csrf
+<form action="#" method="GET"> @csrf
     <div class="container-name">{{ isset($category) ? $category->name : "All products" }}</div>
     <div class="products">
         @foreach($category->products as $product)

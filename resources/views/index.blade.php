@@ -59,11 +59,9 @@
     <div class="container-name">All products</div>
     <div class="products">
         @foreach($products as $product)
-            @include('card', ['product' => $product])
+            @include('card')
         @endforeach
         
     </div>
 </form>
-
-@include('extensions.message', ['type' => 'success', 'message' => 'Good'])
 @endsection

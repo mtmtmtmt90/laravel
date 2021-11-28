@@ -87,5 +87,6 @@
         <div class="container-all">
             @yield('content')
         </div>
+        @include('extensions.flashSessions')
     </body>
 </html>

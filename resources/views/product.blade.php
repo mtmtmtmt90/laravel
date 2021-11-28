@@ -37,11 +37,12 @@
         opacity:0.7;
     }
 </style>
-<form action="">
+<form action="#" method="POST">
+    @csrf
     <div class="container-name">{{ $product->name }}</div>
     <div class="container-desc">Price: {{ $product->price }}$</div>
     <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
     <div class="container-desc">{{ $product->description }}</div>
-    <button class="item-btn">Add to basket</button>
+    <button class="item-btn" formaction="{{ route('basketAdd', [$product]) }}">Add to basket</button>
 </form>
 @endsection

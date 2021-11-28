@@ -30,6 +30,7 @@ class Order extends Model
             $this->status = 1;
             $this->save(); 
             session::forget('orderId');
+            return true;
         }
     }
 }

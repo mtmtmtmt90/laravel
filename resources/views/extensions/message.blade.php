@@ -34,8 +34,8 @@
     }
 </style>
 
-<div class="alert success" id="alert">
-    <span>Product added to basket</span>
+<div class="alert {{ $type }}" id="alert">
+    <span>{{ $message }}</span>
 </div>
 
 <script>
