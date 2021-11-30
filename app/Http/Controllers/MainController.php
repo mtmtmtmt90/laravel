@@ -29,4 +29,12 @@ class MainController extends Controller
         $category = Category::where('code', $code)->first();
         return view('category', ['category' => $category]);
     }
+
+    public function sign_in(){
+        return view('signIn');
+    }
+
+    public function sign_up(){
+        return view('signUp');
+    }
 }

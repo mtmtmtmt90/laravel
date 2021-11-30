@@ -79,7 +79,14 @@
                     <a href="/reset" class="nav-item">Reset selected</a>
                 </div>
                 <div class="navbar-2">
-                    <a href="/login" class="nav-item">Login</a>
+                    <a href=" {{ route('signIn') }} " @if (isset($file))
+                        @if($file === 'sign')
+                        class="nav-item browse"
+                        @else class="nav-item"
+                        @endif
+                    @else class="nav-item"    
+                    @endif
+                    >Login</a>
                     <a href="/dashboard/login" class="nav-item">Administration Panel</a>
                 </div>
             </div>
