@@ -72,12 +72,15 @@ class RegisterController extends Controller
     {   
         if (User::where('email', $data['email'])->exists()){
             session::flash('warning', 'This email is already use! Change your email or go to sign in!');
-            return redirect()->back();
+            return redirect()->back()->send();
+        } else {
+            User::create([
+              'name' => $data['name'],
+               'email' => $data['email'],
+              'password' => Hash::make($data['password']),
+            ]);
+            session::flash('success', 'You are successfullly registered. Please sign in!');
+            return redirect()->route('signIn')->send();
         }
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
     }
 }

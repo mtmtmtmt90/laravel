@@ -78,6 +78,7 @@
                     >To basket</a>
                     <a href="/reset" class="nav-item">Reset selected</a>
                 </div>
+                @guest
                 <div class="navbar-2">
                     <a href=" {{ route('signIn') }} " @if (isset($file))
                         @if($file === 'sign')
@@ -87,8 +88,24 @@
                     @else class="nav-item"    
                     @endif
                     >Login</a>
-                    <a href="/dashboard/login" class="nav-item">Administration Panel</a>
                 </div>
+                @endguest
+                @auth
+                <div class="navbar-2">
+                    <span class="nav-item">{{ Auth::user()->name }}</span>
+                    <a href=" {{ route('signOut') }} " @if (isset($file))
+                        @if($file === 'sign')
+                        class="nav-item browse"
+                        @else class="nav-item"
+                        @endif
+                    @else class="nav-item"    
+                    @endif
+                    >Logout</a>
+                    @if (Auth::user()->name === 'Admin')
+                        <a href="/dashboard/categories" class="nav-item">Administration Panel</a>
+                    @endif    
+                </div>
+                @endauth
             </div>
         </div>
         <div class="container-all">
