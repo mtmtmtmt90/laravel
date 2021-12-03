@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\dashboard\OrderController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -58,9 +59,7 @@ Route::middleware('sysadmin')->group(function () {
     Route::get('/dashboard/products', function(){
         return view('dashboard/products');
     });
-    Route::get('/dashboard/orders', function(){
-        return view('dashboard/orders');
-    });
+    Route::get('/dashboard/orders', [OrderController::class, 'orders'])->name('d-orders');
     Route::get('dashboard/order/1', function(){
         return view('dashboard/order');
     });

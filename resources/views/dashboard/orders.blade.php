@@ -57,16 +57,18 @@
         <div>Cost</div>
         <div>Action</div>
     </div>
-    <div class="grid-table-body">
-        <div>10</div>
-        <div>Muhammet Hudayberdyyew</div>
-        <div>+99365071508</div>
-        <div>2021.11.17 23:59:59</div>
-        <div>2250$</div>
-        <div>
-            <form action="#">
-                <button class="open-order" formaction="/dashboard/order/1">Open</button>
-            </form>
+    @foreach($orders as $order)
+        <div class="grid-table-body">
+            <div>{{ $order->id }}</div>
+            <div>{{ $order->name }}</div>
+            <div>{{ $order->phone }}</div>
+            <div>{{ $order->updated_at->format('H:i d/m/Y') }}</div>
+            <div>{{ $order->totalCost() }}$</div>
+            <div>
+                <form action="#">
+                    <button class="open-order" formaction="/dashboard/order/1">Open</button>
+                </form>
+            </div>
         </div>
-    </div> 
+    @endforeach
 </div>
