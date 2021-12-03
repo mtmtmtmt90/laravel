@@ -35,12 +35,16 @@ Auth::routes([
 Route::get('/home', [MainController::class, 'index'])->name('index');
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/categories', [MainController::class, 'categories'])->name('categories');
-Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
-Route::post('/basket/add/{id}', [BasketController::class, 'basketAdd'])->name('basketAdd');
-Route::post('/basket/rmv/{id}', [BasketController::class, 'basketRmv'])->name('basketRmv');
-Route::get('/product/{product_code?}', [MainController::class, 'product'])->name('product');
+Route::group(['prefix' => '/basket'], function(){
+    Route::post('/add/{id}', [BasketController::class, 'basketAdd'])->name('basketAdd');
+    Route::group(['middleware' => 'bas.empty'], function(){
+        Route::get('/', [BasketController::class, 'basket'])->name('basket');
+        Route::post('/rmv/{id}', [BasketController::class, 'basketRmv'])->name('basketRmv');
+    });
+});
 Route::get('/ordering', [BasketController::class, 'ordering'])->name('ordering');
 Route::post('/order/confirm', [BasketController::class, 'confirm'])->name('orderConfirm');
+Route::get('/product/{product_code?}', [MainController::class, 'product'])->name('product');
 Route::get('/products', [MainController::class, 'index'])->name('products');
 Route::middleware('guest')->group(function () {
     Route::get('/sign_in', [MainController::class, 'sign_in'])->name('signIn');

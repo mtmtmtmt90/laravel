@@ -21,7 +21,7 @@ class SysAdmin
     {
         if (Auth::check()) 
         {
-            if (Auth::user()->email == 'go.suits.3@gmail.com') {
+            if (Auth::user()->isAdmin === 1) {
                 return $next($request);
             }
         }
