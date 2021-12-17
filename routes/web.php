@@ -4,12 +4,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboard\OrderController;
+use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Middleware\SysAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 */
 
 Route::get('/dd', function(){
-    return view('/');
+    return view('dashboard.open');
 });
 
 Auth::routes([
@@ -56,23 +58,26 @@ Route::get('/sign_out', [LoginController::class, 'logout'])->name('signOut')->mi
 
 Route::get('/{code?}', [MainController::class, 'category']);
 
-Route::middleware('sysadmin')->group(function () {
-    Route::get('/dashboard/categories', function(){
-        return view('dashboard/categories');
-    });
-    Route::get('/dashboard/products', function(){
-        return view('dashboard/products');
-    });
-    Route::get('/dashboard/orders', [OrderController::class, 'orders'])->name('d-orders');
-    Route::get('dashboard/order/1', function(){
-        return view('dashboard/order');
-    });
-    Route::get('dashboard/open', function(){
-        return view('dashboard/open');
-    });
-    Route::get('dashboard/edit', function(){
-        return view('dashboard/edit');
-    });    
+Route::group(['middleware' => 'sysadmin', 'prefix' => '/dashboard/'], function () {
+
+    Route::resource('categories', CategoryController::class);
+
+    // Route::get('categories', function(){
+    //     return view('dashboard/categories');
+    // });
+    // Route::get('products', function(){
+    //     return view('dashboard/products');
+    // });
+    // Route::get('orders', [OrderController::class, 'orders'])->name('d-orders');
+    // Route::get('dashboard/order/1', function(){
+    //     return view('dashboard/order');
+    // });
+    // Route::get('open', function(){
+    //     return view('dashboard/open');
+    // });
+    // Route::get('edit', function(){
+    //     return view('dashboard/edit');
+    // });    
 });
 
 

@@ -33,33 +33,38 @@
 </style>
 
 <div class="container-open">
-    <div class="container-name">Product Mobile telephone iPhone X 256GB</div>
+    <div class="container-name">{{ $from . '  ' . $object->name }}</div>
     <div class="grid-table-head">
         <div>Field</div>
         <div>Meaning</div>
     </div>
     <div class="grid-table-body">
         <div>ID</div>
-        <div>1</div>
+        <div>{{ $object->id }}</div>
     </div>
     <div class="grid-table-body">
         <div>Code</div>
-        <div>iphone_x_256</div>
+        <div>{{ $object->code }}</div>
     </div>
     <div class="grid-table-body">
         <div>Name</div>
-        <div>iPhone X 256GB</div>
+        <div>{{ $object->name }}</div>
     </div>
     <div class="grid-table-body">
         <div>Description</div>
-        <div>For smart peoples smart phone</div>
+        <div>{{ $object->description }}</div>
     </div>
     <div class="grid-table-body">
         <div>Picture</div>
         <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
     </div>
     <div class="grid-table-body">
+        @if ($from === 'Category') 
+        <div>Products count</div>
+        <div>{{ $object->products()->count() }}</div>
+        @else
         <div>Category</div>
         <div>Mobile telephones</div>
+        @endif
     </div>
 </div>

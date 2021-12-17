@@ -38,25 +38,41 @@
         cursor:pointer;
     }
 </style>
-<form action="">
+<form 
+@isset($category)
+action="{{ route('categories.update', $category) }}" 
+@else
+action="{{ route('categories.store') }}" 
+@endisset
+method="POST">
+@isset($category)
+@method('PUT')
+@endisset
+@csrf    
 <div class="container-edit">
-    <div class="container-name">Editing category</div>
+    <div class="container-name">
+        @isset($category)
+        Edit category
+        @else
+        Create category
+        @endisset
+    </div>
     <div class="grid-table">
         <div class="head">Code</div>
-        <div><input type="text" class="input"></div>
+        <div><input type="text" name="code" class="input" value="@isset($category) {{ $category->code }} @endisset"></div>
     </div>
     <div class="grid-table">
         <div class="head">Name</div>
-        <div><input type="text" class="input"></div>
+        <div><input type="text" name="name" class="input" value="@isset($category) {{ $category->name }} @endisset"></div>
     </div>
     <div class="grid-table">
         <div class="head">Description</div>
-        <div><textarea class="textarea"></textarea></div>
+        <div><textarea  name="description" class="textarea" >@isset($category) {{ $category->description }} @endisset</textarea></div>
     </div>
     <div class="grid-table">
         <div class="head">Picture</div>
-        <div><input type="file"></div>
+        <div><input name="image" type="file"></div>
     </div>
-    <button class="item-btn" formaction="">Save</button>
+    <button class="item-btn">Save</button>
 </div>
 </form>

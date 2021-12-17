@@ -61,7 +61,9 @@
         cursor:pointer;
     }
 </style>
-<form action="">
+<form action="" method="POST">
+@method('DELETE')
+@csrf
 <div class="container-categories">
     <div class="container-name">Categories</div>
     <div class="grid-table-head">
@@ -70,36 +72,18 @@
         <div>Description</div>
         <div>Actions</div>
     </div>
+    @foreach ($categories as $category)
     <div class="grid-table-body">
-        <div>1</div>
-        <div>mobiles</div>
-        <div>Mobile telephones</div>
+        <div>{{ $category->id }}</div>
+        <div>{{ $category->code }}</div>
+        <div>{{ $category->name }}</div>
         <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn" formaction="/dashboard/edit">Edit</button>
-            <button class="del-btn">Delete</button>
+            <button class="open-btn" formaction="{{ route('categories.show', $category) }}" formmethod="GET">Open</button>
+            <button class="edit-btn" formaction="{{ route('categories.edit', $category) }}" formmethod="GET">Edit</button>
+            <button class="del-btn" formaction="{{ route('categories.destroy', $category) }}">Delete</button>
         </div>
     </div>
-    <div class="grid-table-body">
-        <div>2</div>
-        <div>portable</div>
-        <div>Portable equipment</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <div class="grid-table-body">
-        <div>3</div>
-        <div>appliances</div>
-        <div>Appliances</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <button class="item-btn">Add the category</button>
+    @endforeach
+    <button class="item-btn" formaction="{{ route('categories.create') }}" formmethod="GET">Add the category</button>
 </div>
 </form>
