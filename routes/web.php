@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\dashboard\OrderController;
 use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\ProductController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -61,6 +62,8 @@ Route::get('/{code?}', [MainController::class, 'category']);
 Route::group(['middleware' => 'sysadmin', 'prefix' => '/dashboard/'], function () {
 
     Route::resource('categories', CategoryController::class);
+
+    Route::resource('products', ProductController::class);
 
     // Route::get('categories', function(){
     //     return view('dashboard/categories');

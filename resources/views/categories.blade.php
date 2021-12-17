@@ -30,7 +30,7 @@
         @foreach($categories as $category)
         <a href="/{{ $category->code }}">
             <div class="item">
-                <div class="item-img" style="background-image: url('{{ Storage::url('img/phones.png') }}')"></div>
+                <div class="item-img" style="background-image: url('{{ Storage::url($category->image) }}')"></div>
                 <div class="item-name">{{ $category->name }}</div>
                 <div class="item-desc">{{ $category->description }}</div>
             </div>

@@ -103,7 +103,7 @@
     @foreach($order->products as $product)
     <div class="grid-table-body">
         <div style="display:flex;">
-            <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
+            <div class="item-img" style="background-image: url('{{Storage::url($product->image);}}')"></div>
             <div style="margin-top:auto;margin-bottom:auto;"><a href="{{ route('product', $product->code) }}" class="toItem">{{ $product->name }}</a></div>
         </div>
         <div style="display:flex;">

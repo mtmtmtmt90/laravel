@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Storage;
 
 class CategoryController extends Controller
 {
@@ -26,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.edit');
+        return view('dashboard.edit', ['from' => 'Create category', 'url' => 'products']);
     }
 
     /**
@@ -36,8 +37,10 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        Category::create($request->all());
+    {   $path = $request->file('image')->store('categories');
+        $param = $request->all();
+        $param['image'] = $path;
+        Category::create($param);
         return redirect()->route('categories.index');
     }
 
@@ -60,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.edit', ['category' => $category]);
+        return view('dashboard.edit', ['object' => $category, 'from' => 'Edit category', 'url' => 'products']);
     }
 
     /**
@@ -72,7 +75,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->all());
+        Storage::delete([$category->image]);
+        $path = $request->file('image')->store('categories');
+        $param = $request->all();
+        $param['image'] = $path;
+        $category->update($param);
         return redirect()->route('categories.index');
     }
 
@@ -83,7 +90,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
-    {
+    {   Storage::delete($category->image);
         $category->delete();
         return redirect()->route('categories.index'); 
     }

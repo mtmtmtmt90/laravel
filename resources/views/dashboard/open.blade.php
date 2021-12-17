@@ -56,15 +56,22 @@
     </div>
     <div class="grid-table-body">
         <div>Picture</div>
-        <div class="item-img" style="background-image: url('{{Storage::url('img/iphone-x.jpg');}}')"></div>
+        <div class="item-img" style="background-image: url('{{Storage::url($object->image);}}')"></div>
     </div>
+    @if ($from === 'Category') 
     <div class="grid-table-body">
-        @if ($from === 'Category') 
         <div>Products count</div>
         <div>{{ $object->products()->count() }}</div>
-        @else
-        <div>Category</div>
-        <div>Mobile telephones</div>
-        @endif
     </div>
+    @elseif ($from === 'Product')
+    <div class="grid-table-body">
+        <div>Category</div>
+        <div>{{ $object->category()->first()->name }}</div>
+    </div>
+    <div class="grid-table-body">
+        <div>Price</div>
+        <div>{{ $object->price }}</div>
+    </div>
+    @endif
+    
 </div>

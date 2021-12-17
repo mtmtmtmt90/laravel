@@ -23,6 +23,11 @@
         height:20px;
         padding:5px;
     }
+    .select{
+        width:300px;
+        height:30px;
+        padding:5px;
+    }
     .textarea{
         width:350px;
         height:75px;
@@ -39,36 +44,54 @@
     }
 </style>
 <form 
-@isset($category)
-action="{{ route('categories.update', $category) }}" 
+@isset($object)
+action="{{ route($url.'.update', $object) }}" 
 @else
-action="{{ route('categories.store') }}" 
+action="{{ route($url.'.store') }}" 
 @endisset
-method="POST">
-@isset($category)
+method="POST" enctype="multipart/form-data">
+@isset($object)
 @method('PUT')
 @endisset
 @csrf    
 <div class="container-edit">
     <div class="container-name">
-        @isset($category)
-        Edit category
-        @else
-        Create category
-        @endisset
+        {{ $from }}
     </div>
     <div class="grid-table">
         <div class="head">Code</div>
-        <div><input type="text" name="code" class="input" value="@isset($category) {{ $category->code }} @endisset"></div>
+        <div><input type="text" name="code" class="input" value="@isset($object) {{ $object->code }} @endisset"></div>
     </div>
     <div class="grid-table">
         <div class="head">Name</div>
-        <div><input type="text" name="name" class="input" value="@isset($category) {{ $category->name }} @endisset"></div>
+        <div><input type="text" name="name" class="input" value="@isset($object) {{ $object->name }} @endisset"></div>
     </div>
     <div class="grid-table">
         <div class="head">Description</div>
-        <div><textarea  name="description" class="textarea" >@isset($category) {{ $category->description }} @endisset</textarea></div>
+        <div><textarea  name="description" class="textarea" >@isset($object) {{ $object->description }} @endisset</textarea></div>
     </div>
+    @isset($categories)
+    <div class="grid-table">
+        <div class="head">Price</div>
+        <div><input type="text" name="price" class="input" value="@isset($object) {{ $object->price }} @endisset"></div>
+    </div>
+    <div class="grid-table">
+        <div class="head">Category</div>
+        <div>
+            <select name="category_id" class="select">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}"
+                    @if ($category->id === $object->category_id)
+                    selected
+                    @endif    
+                    >
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    @endisset
     <div class="grid-table">
         <div class="head">Picture</div>
         <div><input name="image" type="file"></div>

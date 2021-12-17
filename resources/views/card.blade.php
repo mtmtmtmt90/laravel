@@ -1,5 +1,5 @@
 <div class="item">
-    <div class="item-img" style="background-image: url('{{Storage::url('img/beats.jpeg');}}')"></div>
+    <div class="item-img" style="background-image: url('{{Storage::url($product->image);}}')"></div>
     <div class="item-name">{{ $product->name }}</div>
     <div class="item-price">{{ $product->price }}$</div>
     <div class="item-options">

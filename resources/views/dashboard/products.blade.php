@@ -61,9 +61,11 @@
         cursor:pointer;
     }
 </style>
-<form action="#">
+<form action="#" method="POST">
+@method('DELETE')
+@csrf    
 <div class="container-products">
-<div class="container-name">Categories</div>
+<div class="container-name">Products</div>
     <div class="grid-table-head">
         <div>#</div>
         <div>Code</div>
@@ -72,66 +74,21 @@
         <div>Price</div>
         <div>Actions</div>
     </div>
+    @foreach($products as $product)
     <div class="grid-table-body">
-        <div>1</div>
-        <div>iphone_x_256</div>
-        <div>iPhone X 256</div>
-        <div>Mobile telephones</div>
-        <div>850$</div>
+        <div>{{ $product->id }}</div>
+        <div>{{ $product->code }}</div>
+        <div>{{ $product->name }}</div>
+        <div>{{ $product->category()->first()->name }}</div>
+        <div>{{ $product->price }}</div>
         <div>
-            <button class="open-btn" formaction="/dashboard/open">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
+            <button class="open-btn" formaction="{{ route('products.show', $product) }}" formmethod="GET">Open</button>
+            <button class="edit-btn" formaction="{{ route('products.edit', $product) }}" formmethod="GET">Edit</button>
+            <button class="del-btn" formaction="{{ route('products.destroy', $product) }}">Delete</button>
         </div>
     </div>
-    <div class="grid-table-body">
-        <div>2</div>
-        <div>beats_pro</div>
-        <div>Beats Pro</div>
-        <div>Portable equipment</div>
-        <div>130$</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <div class="grid-table-body">
-        <div>3</div>
-        <div>braun</div>
-        <div>Braun</div>
-        <div>Appliances</div>
-        <div>150$</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <div class="grid-table-body">
-        <div>4</div>
-        <div>go_pro</div>
-        <div>Go Pro</div>
-        <div>Portable equipment</div>
-        <div>55$</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <div class="grid-table-body">
-        <div>5</div>
-        <div>huawei_p40_pro_plus</div>
-        <div>Huawei P40 Pro Plus</div>
-        <div>Mobile telephones</div>
-        <div>450$</div>
-        <div>
-            <button class="open-btn">Open</button>
-            <button class="edit-btn">Edit</button>
-            <button class="del-btn">Delete</button>
-        </div>
-    </div>
-    <button class="item-btn">Add the category</button>
+    @endforeach
+    
+    <button class="item-btn" formaction="{{ route('products.create') }}" formmethod="GET">Add product</button>
 </div>
 </form>
