@@ -42,6 +42,15 @@
         border-radius:5px;
         cursor:pointer;
     }
+    .error{
+        background:rgba(250, 0, 0, 0.5);
+        font-style:italic;
+        padding:2px 10px;
+        width:296px;
+        color:rgb(30, 30, 30);
+        margin-bottom:10px;
+        border-radius: 5px;
+    }
 </style>
 <form 
 @isset($object)
@@ -60,20 +69,40 @@ method="POST" enctype="multipart/form-data">
     </div>
     <div class="grid-table">
         <div class="head">Code</div>
-        <div><input type="text" name="code" class="input" value="@isset($object) {{ $object->code }} @endisset"></div>
+        <div>
+            @error('code')
+            <div class="error">{{ $message }}</div>
+            @enderror
+            <div><input type="text" name="code" class="input" value="@isset($object) {{ $object->code }} @endisset"></div>
+        </div>
     </div>
     <div class="grid-table">
         <div class="head">Name</div>
-        <div><input type="text" name="name" class="input" value="@isset($object) {{ $object->name }} @endisset"></div>
+        <div>
+            @error('name')
+            <div class="error">{{ $message }}</div>
+            @enderror
+            <div><input type="text" name="name" class="input" value="@isset($object) {{ $object->name }} @endisset"></div>
+        </div>
     </div>
     <div class="grid-table">
         <div class="head">Description</div>
-        <div><textarea  name="description" class="textarea" >@isset($object) {{ $object->description }} @endisset</textarea></div>
+        <div>
+            @error('description')
+            <div class="error">{{ $message }}</div>
+            @enderror
+            <div><textarea  name="description" class="textarea" >@isset($object) {{ $object->description }} @endisset</textarea></div>
+        </div>
     </div>
     @isset($categories)
     <div class="grid-table">
         <div class="head">Price</div>
-        <div><input type="text" name="price" class="input" value="@isset($object) {{ $object->price }} @endisset"></div>
+        @error('price')
+            <div>
+                <div class="error">{{ $message }}</div>
+                <div><input type="text" name="price" class="input" value="@isset($object) {{ $object->price }} @endisset"></div>
+            </div>
+        @enderror
     </div>
     <div class="grid-table">
         <div class="head">Category</div>
@@ -81,7 +110,7 @@ method="POST" enctype="multipart/form-data">
             <select name="category_id" class="select">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}"
-                    @if ($category->id === $object->category_id)
+                    @if ($category->id === (isset($object->category_id)??""))
                     selected
                     @endif    
                     >

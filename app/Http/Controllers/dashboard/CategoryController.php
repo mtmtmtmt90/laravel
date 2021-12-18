@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 use Storage;
 
 class CategoryController extends Controller
@@ -27,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.edit', ['from' => 'Create category', 'url' => 'products']);
+        return view('dashboard.edit', ['from' => 'Create category', 'url' => 'categories']);
     }
 
     /**
@@ -36,10 +37,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $path = $request->file('image')->store('categories');
+    public function store(CategoryRequest $request)
+    {   
         $param = $request->all();
-        $param['image'] = $path;
+        if ($request->has('image')){
+            $path = $request->file('image')->store('categories');
+            $param['image'] = $path;
+        }
+
         Category::create($param);
         return redirect()->route('categories.index');
     }
@@ -63,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.edit', ['object' => $category, 'from' => 'Edit category', 'url' => 'products']);
+        return view('dashboard.edit', ['object' => $category, 'from' => 'Edit category', 'url' => 'categories']);
     }
 
     /**
@@ -73,12 +78,16 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        Storage::delete([$category->image]);
-        $path = $request->file('image')->store('categories');
         $param = $request->all();
-        $param['image'] = $path;
+        unset($param['image']);
+        if ($request->has('image')){
+            Storage::delete([$category->image]);
+            $path = $request->file('image')->store('categories');
+            $param['image'] = $path;
+        }
+        
         $category->update($param);
         return redirect()->route('categories.index');
     }
