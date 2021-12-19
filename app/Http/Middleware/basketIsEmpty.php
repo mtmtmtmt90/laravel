@@ -19,7 +19,7 @@ class basketIsEmpty
     public function handle(Request $request, Closure $next)
     {
         $orderId = session::get('orderId');
-        if (!Order::find($orderId)->products()->exists())  
+        if (!$orderId)  
         { 
             session::flash('warning', 'Basket is empty. Please add something to basket!');
             return redirect()->route('index'); 

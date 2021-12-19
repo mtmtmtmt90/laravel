@@ -55,12 +55,11 @@ class BasketController extends Controller
             session::flash('warning', $order->products()->where('product_id', $productID)->first()->name .' removed from basket!');
             if ($pivotRow->count === 1) {
                 $order->products()->detach($productID);
+                if (!$order->products()->exists()) session::forget('orderId');
             } else {
                 $pivotRow->count--;
                 $pivotRow->update();
             }
-        } else {
-            session::forget('orderId');
         }
         return redirect()->back();
     }

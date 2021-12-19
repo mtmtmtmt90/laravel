@@ -10,6 +10,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Middleware\SysAdmin;
@@ -26,7 +27,7 @@ use App\Http\Middleware\SysAdmin;
 */
 
 Route::get('/dd', function(){
-    return view('dashboard.open');
+    return view('myOrders');
 });
 
 Auth::routes([
@@ -54,6 +55,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/sign_in/confirm', [LoginController::class, '__constructor'])->name('login');
     Route::get('/sign_up', [MainController::class, 'sign_up'])->name('signUp');
     Route::post('/sign_up/confirm', [RegisterController::class, '__construct'])->name('register');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::resource('userorders', UserOrderController::class);
 });
 Route::get('/sign_out', [LoginController::class, 'logout'])->name('signOut')->middleware('auth');
 

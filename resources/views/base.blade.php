@@ -93,6 +93,18 @@
                 @auth
                 <div class="navbar-2">
                     <span class="nav-item">{{ Auth::user()->name }}</span>
+                    @if (Auth::user()->name === 'Admin')
+                        <a href="/dashboard/categories" class="nav-item">Administration Panel</a>
+                    @else    
+                    <a href=" {{ route('userorders.index') }} " @if (isset($file))
+                        @if($file === 'myOrders')
+                        class="nav-item browse"
+                        @else class="nav-item"
+                        @endif
+                    @else class="nav-item"    
+                    @endif
+                    >My orders</a>
+                    @endif
                     <a href=" {{ route('signOut') }} " @if (isset($file))
                         @if($file === 'sign')
                         class="nav-item browse"
@@ -101,9 +113,6 @@
                     @else class="nav-item"    
                     @endif
                     >Logout</a>
-                    @if (Auth::user()->name === 'Admin')
-                        <a href="/dashboard/categories" class="nav-item">Administration Panel</a>
-                    @endif    
                 </div>
                 @endauth
             </div>
