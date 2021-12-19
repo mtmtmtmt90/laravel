@@ -66,7 +66,7 @@
             <div>{{ $order->totalCost() }}$</div>
             <div>
                 <form action="#">
-                    <button class="open-order" formaction="/dashboard/order/1">Open</button>
+                    <button class="open-order" formaction="{{ route('orders.show', $order) }}">Open</button>
                 </form>
             </div>
         </div>

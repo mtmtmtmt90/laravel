@@ -45,7 +45,7 @@
                     <a href="/" class="nav-item" style="font-size: 20px;">Back to Site </a>
                     <a href="{{ route('categories.index') }}" class="nav-item">Category</a>
                     <a href="{{ route('products.index') }}" class="nav-item">Products</a>
-                    <a href="/dashboard/orders" class="nav-item">Orders</a>
+                    <a href="{{ route('orders.index') }}" class="nav-item">Orders</a>
                 </div>
             </div>
         </div>

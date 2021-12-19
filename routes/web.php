@@ -65,6 +65,8 @@ Route::group(['middleware' => 'sysadmin', 'prefix' => '/dashboard/'], function (
 
     Route::resource('products', ProductController::class);
 
+    Route::resource('orders', OrderController::class);
+
     // Route::get('categories', function(){
     //     return view('dashboard/categories');
     // });
