@@ -47,6 +47,8 @@ class ProductController extends Controller
             $param['image'] = $path;
         }
         
+        $param['new'] = intval($param['new']);
+
         Product::create($param);
         return redirect()->route('products.index');
     }
@@ -89,6 +91,8 @@ class ProductController extends Controller
             $path = $request->file('image')->store('products');
             $param['image'] = $path;
         }
+
+        $param['new'] = intval($param['new']);
         
         $product->update($param);
         return redirect()->route('products.index');

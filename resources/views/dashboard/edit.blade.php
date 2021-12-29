@@ -97,12 +97,12 @@ method="POST" enctype="multipart/form-data">
     @isset($categories)
     <div class="grid-table">
         <div class="head">Price</div>
-        @error('price')
-            <div>
-                <div class="error">{{ $message }}</div>
-                <div><input type="text" name="price" class="input" value="@isset($object) {{ $object->price }} @endisset"></div>
-            </div>
-        @enderror
+        <div>
+            @error('price')
+            <div class="error">{{ $message }}</div>
+            @enderror
+            <div><input type="text" name="price" class="input" value="@isset($object) {{ $object->price }} @endisset"></div>
+        </div>
     </div>
     <div class="grid-table">
         <div class="head">Category</div>
@@ -110,11 +110,25 @@ method="POST" enctype="multipart/form-data">
             <select name="category_id" class="select">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}"
-                    @if ($category->id === (isset($object->category_id)??""))
+                    
+                    @if ($category->id == (isset($object->category_id)??""))
                     selected
                     @endif    
+                    
                     >
                         {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="grid-table">
+        <div class="head">New product</div>
+        <div>
+            <select name="new" class="select">
+                @foreach(['0' => 'No', '1' => 'Yes'] as $key => $value)
+                    <option value="{{ $key }}" >
+                        {{ $value }}
                     </option>
                 @endforeach
             </select>
