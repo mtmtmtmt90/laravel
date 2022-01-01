@@ -6,11 +6,15 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MainController extends Controller
 {
-    public function index(){
-        $products = Product::get();
+    public function index(Request $request){
+
+        Log::channel('single')->info($request->ip());
+
+        $products = Product::simplePaginate(6);
         return view('index', ['products' => $products]);
     }
 

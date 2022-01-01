@@ -54,6 +54,27 @@
         background-color: white;
         color: rgb(15,15,15);
     }
+    nav{
+        margin:20px auto;
+        width:200px;
+        display:flex;
+        justify-content:space-around;
+        text-align:center;
+    }
+    nav a{
+        background:rgba(19, 19, 255, 0.842);
+        color:white;
+        border-radius:5px;
+        width:80px;
+        padding:2px;
+    }
+    nav span{
+        background:lightgrey;
+        color:rgb(15,15,15);
+        border-radius:5px;
+        width:80px;
+        padding:2px;
+    }
 </style>
 <form action="#" method="GET"> @csrf
     <div class="container-name">All products</div>
@@ -63,5 +84,6 @@
         @endforeach
         
     </div>
+    {{ $products->links() }}
 </form>
 @endsection
