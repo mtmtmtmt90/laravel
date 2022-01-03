@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Auth;
 
 
 class BasketController extends Controller
@@ -67,7 +68,8 @@ class BasketController extends Controller
     public function confirm(Request $request){
         $orderId = session::get('orderId');
         $order = Order::find($orderId); 
-        $result = $order->saveResult($request->name, $request->number);
+        $email = Auth::check() ? Auth::user()->email : $request->email;
+        $result = $order->saveResult($request->name, $request->number, $email);
         if ($result) { session::flash('success', 'Order has been accepted for processing!'); } else { session::flash('warning', 'Order accept error!'); }
         return redirect()->route('index');
     }

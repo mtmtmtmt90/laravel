@@ -72,25 +72,6 @@ Route::group(['middleware' => 'sysadmin', 'prefix' => '/dashboard/'], function (
 
     Route::resource('orders', OrderController::class);
 
-    // Route::get('categories', function(){
-    //     return view('dashboard/categories');
-    // });
-    // Route::get('products', function(){
-    //     return view('dashboard/products');
-    // });
-    // Route::get('orders', [OrderController::class, 'orders'])->name('d-orders');
-    // Route::get('dashboard/order/1', function(){
-    //     return view('dashboard/order');
-    // });
-    // Route::get('open', function(){
-    //     return view('dashboard/open');
-    // });
-    // Route::get('edit', function(){
-    //     return view('dashboard/edit');
-    // });    
 });
 
 
-//Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -54,6 +54,12 @@
             <label for="number" class="form-label">Your number:</label>
             <input type="text" name="number" id="number" placeholder="your number..." class="form-input">
         </div>
+        @guest
+        <div class="input-place">
+            <label for="number" class="form-label">Your email:</label>
+            <input type="text" name="email" id="email" placeholder="your email..." class="form-input">
+        </div>
+        @endguest
         <button class="form-btn">Confirm</button>
     </form>
 @endsection    
